@@ -1,25 +1,25 @@
-%form.form-search{action: "#{App.wvu_config[:search][:url]}", method: "get", role: "search"}
+%form.wvu-search{action: "#{App.wvu_config[:search][:url]}", method: "get", role: "search"}
 
-  %label.form-search__label{:for:  "q"}
-    %span.form-search__label-text Search
-    %input#q.form-search__field{maxlength: "256", name: "q", placeholder: "Search this site...", type: "search"}
+  %label.wvu-search__label{:for:  "q"}
+    %span.wvu-search__label-text Search
+    %input#q.wvu-search__field{maxlength: "256", name: "q", placeholder: "Search this site...", type: "search"}
   %input#sort{name: "sort", type: "hidden", value: "date:D:L:d1"}
   %input#output{name: "output", type: "hidden", value: "xml_no_dtd"}
   %input#ie{name: "ie", type: "hidden", value: "UTF-8"}
   %input#oe{name: "oe", type: "hidden", value: "UTF-8"}
   %input#proxystylesheet{name: "proxystylesheet", type: "hidden", value: "default_frontend"}
   %input#client{name: "client", type: "hidden", value: "default_frontend"}
-  %input.form-search__submit{name: "btnG", type: "submit", value: "Search"}
+  %input.wvu-search__submit{name: "btnG", type: "submit", value: "Search"}
 
-  %div.form-search__search-type
-    %input#form-search__sitesearch{checked: "true", name: "as_sitesearch", type: "radio", value: "#{App.wvu_config[:domain]}"}
-    %label{:for:  "form-search__sitesearch"} Search this site
+  %div.wvu-search__search-type
+    %input#wvu-search__sitesearch{checked: "true", name: "as_sitesearch", type: "radio", value: "#{App.wvu_config[:domain]}"}
+    %label{:for:  "wvu-search__sitesearch"} Search this site
     - if App.wvu_config[:tech]
       - sitesearch_url = "wvutech.edu"
     - else
       - sitesearch_url = "wvu.edu"
-    %input#form-search__wvusearch{name: "as_sitesearch", type: "radio", value: "#{sitesearch_url}"
-    %label{:for:  "form-search__wvusearch"}
+    %input#wvu-search__wvusearch{name: "as_sitesearch", type: "radio", value: "#{sitesearch_url}"
+    %label{:for:  "wvu-search__wvusearch"}
       - if App.wvu_config[:tech]
         Search WVU Tech
       - else
