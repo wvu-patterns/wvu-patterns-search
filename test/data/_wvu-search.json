@@ -1,0 +1,9 @@
+{
+  "wvu_config": {
+    "domain": "",
+    "wvu_tech": false,
+    "wvu_search": {
+      "url": "//search.wvu.edu/search"
+    }
+  }
+}
