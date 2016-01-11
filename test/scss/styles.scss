@@ -9,6 +9,10 @@ $wvu-masthead-background: 'gold';
 
 // Test Styles
 // =================================================
-body {
+.test-background-blue {
   background-color: $wvu-blue;
+}
+
+.test-background-gold {
+  background-color: $wvu-gold;
 }
