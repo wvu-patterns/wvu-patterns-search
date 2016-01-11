@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     prefix = require('gulp-autoprefixer'),
     rename = require('gulp-rename'),
     handlebars = require('gulp-compile-handlebars'),
+    todo = require('gulp-todo'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload;
 
@@ -20,6 +21,21 @@ gulp.task('browser-sync', function() {
     logConnections: true,
     logSnippet: false
   });
+});
+
+gulp.task('todo', function(){
+  return gulp.src([
+    './**/*.scss',
+    '!./bower_components/**/*.scss',
+    './**/*.html',
+    '!./bower_components/**/*.html',
+    './**/*.hbs',
+    '!./bower_components/**/*.hbs',
+    './**/*.haml',
+    '!./bower_components/**/*.haml'
+  ])
+  .pipe(todo())
+  .pipe(gulp.dest('./'));
 });
 
 gulp.task('compile-scss', function(){
@@ -39,7 +55,7 @@ gulp.task('compile-scss', function(){
     .pipe(gulp.dest('./build/css/'));
 });
 
-gulp.task('compile-handlebars', function () {
+gulp.task('build',['todo','compile-scss'], function () {
 
   var templateData = JSON.parse(fs.readFileSync('./data/_wvu-search.json'));
 
@@ -60,4 +76,5 @@ gulp.task('default',['compile-scss','compile-handlebars','browser-sync'], functi
   gulp.watch(["./src/handlebars/*.hbs","./test/**/*.hbs","./test/data.json"],["compile-handlebars"]);
   gulp.watch("./build/**/*.html").on('change',reload);
   gulp.watch("./build/css/*.css").on('change',reload);
+  gulp.watch(['./src/haml/**/*.haml','./src/cleanslate/**/*.html'], ['todo']);
 });
