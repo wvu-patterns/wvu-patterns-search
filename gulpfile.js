@@ -71,6 +71,8 @@ gulp.task('build',['todo','compile-scss'], function () {
         .pipe(gulp.dest('./build'));
 });
 
+gulp.task('ci',['build']);
+
 gulp.task('default',['build','browser-sync'], function(){
   gulp.watch(["./src/scss/*.scss","./test/scss/*.scss"],["compile-scss"]);
   gulp.watch(["./src/handlebars/*.hbs","./test/**/*.hbs","./test/data.json"],["build"]);
