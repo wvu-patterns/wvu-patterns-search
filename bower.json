@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "wvu-utilities-typography": "1.0.0",
-    "normalize-scss": "~3.0.3"
+    "normalize.scss": "~4.0.3"
   }
 }

@@ -44,7 +44,7 @@ gulp.task('compile-scss', function(){
     ])
     .pipe(sourcemaps.init())
     .pipe(sass({
-      includePaths: ['scss'],
+      includePaths: ['scss','./bower_components/support-for/sass'],
       outputStyle: 'expanded'
     }))
     .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7", { cascade: true }))
@@ -71,9 +71,9 @@ gulp.task('build',['todo','compile-scss'], function () {
         .pipe(gulp.dest('./build'));
 });
 
-gulp.task('default',['compile-scss','compile-handlebars','browser-sync'], function(){
+gulp.task('default',['build','browser-sync'], function(){
   gulp.watch(["./src/scss/*.scss","./test/scss/*.scss"],["compile-scss"]);
-  gulp.watch(["./src/handlebars/*.hbs","./test/**/*.hbs","./test/data.json"],["compile-handlebars"]);
+  gulp.watch(["./src/handlebars/*.hbs","./test/**/*.hbs","./test/data.json"],["build"]);
   gulp.watch("./build/**/*.html").on('change',reload);
   gulp.watch("./build/css/*.css").on('change',reload);
   gulp.watch(['./src/haml/**/*.haml','./src/cleanslate/**/*.html'], ['todo']);
